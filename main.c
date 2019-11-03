@@ -13,6 +13,11 @@ void main(){
   list = insert_front(list, "hellon", "Wilbert");
   printf("Printing list:\n");
   print_list(list);
+  printf("Finding song\n");
+  print_list(find_song(list, "helloa", "Hilbert"));
+  print_list(list);
+  //list = insert_order(list, "helloc", "Philbert");
+  print_list(list);
 /*  printf("Removing 9\n");
   list = remove_node(list, 9);
   print_list(list);
