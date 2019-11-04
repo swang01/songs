@@ -121,4 +121,9 @@ int main(){
   add_song(table, "One Jump Ahead (Aladdin)", "Brad Kane");
   add_song(table, "A Whole New World (Aladdin)", "Brad Kane");
   print_lib(table);
+  printf("====================================\n");
+
+  // printf("Testing clear_lib\n");
+  // clear_lib(table);
+  // print_lib(table);
 }

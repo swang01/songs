@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-int find_letter (char word[100]){
+int locate (char word[100]){
   int num = word[0];
   if (num >= 65 && num <= 90) {
     return num - 65;
@@ -28,6 +28,14 @@ void print_lib (struct song_node *data[27]){
 }
 
 void add_song (struct song_node *data[27], char name[100], char artist[100]){
-  int i = find_letter(artist);
+  int i = locate(artist);
   data[i] = insert_order(data[i], name, artist);
+}
+
+//doesn't really work but idk why
+void clear_lib (struct song_node *data[27]){
+  for (int i = 0; i < 27; i++) {
+    free_list(data[i]);
+  }
+  printf("Library cleared.\n");
 }
