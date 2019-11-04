@@ -2,36 +2,95 @@
 #include <stdlib.h>
 #include "header.h"
 
-void main(){
-  printf("Empty list:\n");
-  struct node * list = NULL;
+int main(){
+  printf("LINKED LIST TESTS\n");
+  printf("====================================\n");
+
+  printf("Testing print_list\n\n");
+  struct song_node * list = NULL;
+  printf("Printing empty list.\n");
   print_list(list);
-  printf("Adding songs and artists\n");
-  list = insert_front(list, "hello", "Wilbert");
-  list = insert_front(list, "helloa", "Hilbert");
-  list = insert_front(list, "hellob", "Philbert");
-  list = insert_front(list, "hellon", "Wilbert");
-  printf("Printing list:\n");
+  printf("\n");
+
+  printf("Adding songs and artists out of order.\n");
+  list = insert_front(list, "Let It Go (Frozen)", "Idina Menzel");
+  list = insert_order(list, "I'll Make a Man Out of You (Mulan)", "Donny Osmond");
+  list = insert_front(list, "A Spoon Full of Sugar (Mary Poppins)", "Julie Andrews");
   print_list(list);
-  printf("Finding song\n");
-  print_list(find_song(list, "helloa", "Hilbert"));
-  print_list(list);
-  //list = insert_order(list, "helloc", "Philbert");
-  print_list(list);
-/*  printf("Removing 9\n");
-  list = remove_node(list, 9);
-  print_list(list);
-  printf("Removing 4\n");
-  list = remove_node(list, 4);
-  print_list(list);
-  printf("Removing 0\n");
-  list = remove_node(list, 0);
-  print_list(list);
-  printf("Removing -1\n");
-  list = remove_node(list, -1);
-  print_list(list);
-  printf("Freeing list\n");
+  printf("Freeing unordered list.\n");
   list = free_list(list);
-  printf("Printing list:\n");
-  print_list(list); */
+  print_list(list);
+  printf("\n");
+
+  printf("Adding songs and artists in order.\n");
+  list = insert_order(list, "A Spoon Full of Sugar (Mary Poppins)", "Julie Andrews");
+  list = insert_order(list, "Reflection (Mulan)", "Lea Salonga");
+  list = insert_order(list, "Let It Go (Frozen)", "Idina Menzel");
+  list = insert_order(list, "Bibbidi Bobbidi Boo (Cinderella)", "Verna Felton");
+  list = insert_order(list, "Supercalifragilisticexpialidocious (Mary Poppins)", "Julie Andrews");
+  list = insert_order(list, "When You Wish Upon A Star (Pinocchio)", "Cliff Edwards");
+  list = insert_order(list, "I'll Make a Man Out of You (Mulan)", "Donny Osmond");
+  list = insert_order(list, "Part of Your World (The Little Mermaid)", "Jodi Benson");
+  list = insert_order(list, "One Jump Ahead (Aladdin)", "Brad Kane");
+  list = insert_order(list, "A Whole New World (Aladdin)", "Brad Kane");
+  print_list(list);
+  printf("====================================\n");
+
+  printf("Testing songcmp (helper function)\n\n");
+  printf("Comparing [Brad Kane - A Whole New World (Aladdin)] to [Idina Menzel - Let It Go (Frozen)]\n");
+  printf("[Expected]: -1\n");
+  printf("[songcmp]: ");
+  printf("%d\n", songcmp(list, "Let it Go (Frozen)", "Idina Menzel"));
+  printf("\n");
+  printf("Comparing [Idina Menzel - Let It Go (Frozen)] to [Idina Menzel - Let It Go (Frozen)]\n");
+  printf("[Expected]: 0\n");
+  printf("[songcmp]: ");
+  printf("%d\n", songcmp(list->next->next->next->next->next->next->next, "Let It Go (Frozen)", "Idina Menzel"));
+  printf("\n");
+  printf("Comparing [Verna Felton - Bibbidi Bobbidi Boo (Cinderella)] to [Idina Menzel - Let It Go (Frozen)]\n");
+  printf("[Expected]: 1\n");
+  printf("[songcmp]: ");
+  printf("%d\n", songcmp(list->next->next->next->next->next->next, "Let it Go (Frozen)", "Idina Menzel"));
+  printf("====================================\n");
+
+  printf("Testing find_song\n\n");
+  printf("Finding [Cliff Edwards - When You Wish Upon A Star (Pinocchio)]\n");
+  print_list(find_song(list, "When You Wish Upon A Star (Pinocchio)", "Cliff Edwards"));
+  printf("\n\n");
+  printf("Finding [Josh Gad - In Summer (Frozen)]\n");
+  print_list(find_song(list, "In Summer (Frozen)", "Josh Gad"));
+  printf("====================================\n");
+
+  printf("Testing first_artist\n\n");
+  printf("Finding first song of Brad Kane.\n");
+  print_list(first_artist(list, "Brad Kane"));
+  printf("\n");
+  printf("Finding first song of Taylor Swift.\n");
+  print_list(first_artist(list, "Taylor Swift"));
+  printf("====================================\n");
+
+  printf("Testing random_song\n\n");
+  print_list(random_song(list));
+  printf("====================================\n");
+
+  printf("Testing remove_node\n\n");
+  printf("Removing node from beginning.\n");
+  list = remove_node(list, "A Whole New World (Aladdin)", "Brad Kane");
+  printf("\n");
+  printf("Removing node from middle.\n");
+  list = remove_node(list, "A Spoon Full of Sugar (Mary Poppins)", "Julie Andrews");
+  printf("\n");
+  printf("Removing node at the end.\n");
+  list = remove_node(list, "Bibbidi Bobbidi Bo (Cinderella)", "Verna Felton");
+  printf("\n");
+  print_list(list);
+  printf("====================================\n");
+
+  printf("Testing free_list\n\n");
+  printf("Freeing list.\n");
+  list = free_list(list);
+  printf("Printing list after free_list.\n");
+  print_list(list);
+  printf("====================================\n");
+
 }
