@@ -3,7 +3,8 @@
 #include "library.h"
 
 int main(){
-  printf("LINKED LIST TESTS\n");
+  printf("====================================\n\n");
+  printf("LINKED LIST TESTS\n\n");
   printf("====================================\n");
 
   printf("Testing print_list\n\n");
@@ -120,8 +121,23 @@ int main(){
   add_song(table, "Part of Your World (The Little Mermaid)", "Jodi Benson");
   add_song(table, "One Jump Ahead (Aladdin)", "Brad Kane");
   add_song(table, "A Whole New World (Aladdin)", "Brad Kane");
+
+  printf("Testing print_lib\n\n");
   print_lib(table);
   printf("====================================\n");
+
+  printf("Testing search_artist\n\n");
+  printf("Searching for Jodi Benson:\n");
+  search_artist(table, "Jodi Benson");
+  printf("\n");
+  printf("Searching for Taylor Swift:\n");
+  search_artist(table, "Taylor Swift");
+  printf("====================================\n");
+
+  //printf("Testing find_letter\n\n");
+  //printf("Searching for \n", );
+
+
 
   // printf("Testing clear_lib\n");
   // clear_lib(table);

@@ -32,10 +32,34 @@ void add_song (struct song_node *data[27], char name[100], char artist[100]){
   data[i] = insert_order(data[i], name, artist);
 }
 
-//doesn't really work but idk why
-void clear_lib (struct song_node *data[27]){
-  for (int i = 0; i < 27; i++) {
-    free_list(data[i]);
+//need to debug
+void search_artist (struct song_node *data[27], char artist[100]){
+  int i = locate(artist);
+  struct song_node *current = data[i];
+  while (current != NULL) {
+    if (strcmp(current->artist, artist) == 0) {
+      print_list(current);
+    } else {
+      current = current->next;
+    }
   }
-  printf("Library cleared.\n");
+  printf("Artist not found.\n");
+  print_list(current);
 }
+
+//need to finish
+void find_letter(struct song_node *data[27], char letter[1]){
+  int i = locate(letter);
+  if (data[i] != NULL) {
+    print_list(data[i]);
+  } else {
+
+  }
+}
+
+// void clear_lib (struct song_node *data[27]){
+//   for (int i = 0; i < 27; i++) {
+//     free_list(data[i]);
+//   }
+//   printf("Library cleared.\n");
+// }
