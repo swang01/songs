@@ -5,7 +5,6 @@
 #include <time.h>
 
 void print_list(struct song_node * front){
-  printf("Printing list:\n");
   if (front == NULL){
     printf("[ ]\n");
   }
