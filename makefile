@@ -15,3 +15,6 @@ run:
 clean:
 	rm *.o
 	rm *~
+
+memcheck:
+	valgrind --leak-check=yes ./program

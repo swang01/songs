@@ -6,8 +6,8 @@
 
 int locate (char word[100]){
   int num = word[0];
-  if (num >= 97 && num <= 122) {
-    return num % 97;
+  if (num >= 65 && num <= 90) {
+    return num % 65;
   } else {
     return 26;
   }
@@ -36,44 +36,57 @@ struct song_node * search_artist (struct song_node *data[27], char artist[100]){
   int i = locate(artist);
   return first_artist(data[i], artist);
 }
+
 struct song_node * search_song(struct song_node *data[27], char name[100], char artist[100]){
-  int i = locate(name);
+  int i = locate(artist);
   return find_song(data[i], name, artist);
 }
 
 void print_song(struct song_node *data[27], char artist[100]){
   struct song_node *begin = search_artist(data, artist);
   while (begin != NULL && strcmp(begin->artist, artist) == 0){
-  printf("%s: %s\n", begin->artist,begin->name);
+    print_song_node(begin);
     begin = begin->next;
   }
-  printf("\n");
 }
 
 int locate_letter (char letter){
-  if (letter >= 97 && letter <= 122) {
-    return letter % 97;
+  if (letter >= 65 && letter <= 90) {
+    return letter % 65;
   } else {
     return 26;
   }
 }
-//needs debugging
+
 void print_letter(struct song_node *data[27], char letter){
   int i = locate_letter(letter);
   print_list(data[i]);
 }
 
-//needs debugging
 void shuffle(struct song_node *data[27]){
-  int i;
-  for (i = 0; i < 5; i++){
-    srand ( time(NULL) );
+  int i = 0;
+  while (i < 3){
     int index = rand() % 27;
-    while (data[index] == NULL){
-      index = (index + 1) % 27;
+    if (data[index] != NULL){
+      print_song_node(random_song(data[index]));
+      i++;
     }
-    struct song_node *random = random_song(data[index]);
-    printf("%s: %s\n", random->artist,random->name);
+  }
+}
+
+void print_artist(struct song_node *data[27], char artist[100]){
+  int i = locate(artist);
+  struct song_node *current = data[i];
+  int counter = 0;
+  while (current != NULL){
+    if (strcmp(current->artist, artist) == 0){
+      counter += 1;
+      print_song_node(current);
+    }
+    current = current->next;
+  }
+  if (counter == 0){
+    printf("Artist not found.\n");
   }
 }
 

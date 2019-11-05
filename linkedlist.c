@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-void print_list(struct song_node * front){
+void print_list(struct song_node *front){
   if (front == NULL){
     printf("[ ]\n");
   }
@@ -12,6 +12,10 @@ void print_list(struct song_node * front){
     printf("%s - %s\n",front->artist, front->name);
     front = front->next;
   }
+}
+
+void print_song_node(struct song_node *front){
+  printf("%s - %s\n", front->artist, front->name);
 }
 
 struct song_node * insert_front(struct song_node * front, char name[100], char artist[100]){
@@ -79,6 +83,7 @@ struct song_node * remove_node(struct song_node *front, char name[100], char art
     previous = current;
     current = current->next;
   }
+  printf("Specified song is not in the list.\n");
   return front;
 }
 
