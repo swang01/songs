@@ -80,6 +80,8 @@ int main(){
   printf("Testing random_song\n\n");
   printf("Printing list:\n");
   print_list(random_song(list));
+  printf("Printing list:\n");
+  print_list(random_song(list));
   printf("====================================\n");
 
   printf("Testing remove_node\n\n");
@@ -128,18 +130,32 @@ int main(){
 
   printf("Testing search_artist\n\n");
   printf("Searching for Jodi Benson:\n");
-  search_artist(table, "Jodi Benson");
+  print_list(search_artist(table, "Jodi Benson"));
   printf("\n");
   printf("Searching for Taylor Swift:\n");
-  search_artist(table, "Taylor Swift");
+  print_list(search_artist(table, "Taylor Swift"));
   printf("====================================\n");
-
+  printf("Testing search_song\n\n");
+  print_list(search_song(table, "Let It Go (Frozen)", "Idina Menzel"));
+  printf("====================================\n");
+  printf("Testing print_song\n");
+  print_song(table, "Julie Andrews");
+  printf("Testing print_song\n");
+  print_song(table, "Lea Salonga");
+  printf("====================================\n");
+  printf("Testing print_letter\n");
+  print_letter(table, 'B');
   //printf("Testing find_letter\n\n");
   //printf("Searching for \n", );
-
-
-
-  // printf("Testing clear_lib\n");
-  // clear_lib(table);
-  // print_lib(table);
+  printf("====================================\n");
+  printf("Testing shuffle\n");
+  shuffle(table);
+  printf("====================================\n");
+  printf("Testing delete_song\n");
+  delete_song(table, "Let It Go (Frozen)", "Idina Menzel");
+  print_lib(table);
+  printf("====================================\n");
+  printf("Testing clear_lib\n");
+  clear_lib(table);
+  print_lib(table);
 }
